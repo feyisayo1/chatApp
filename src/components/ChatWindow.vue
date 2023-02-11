@@ -4,7 +4,7 @@
     <div v-if="documents" class="messages" ref="bottom">
         <div v-for="doc in formattedDocuments" :key="doc.id" class="single" :class="{ sender: doc.isSender }">
             <span class="created-at">{{ doc.createdAt }}</span>
-            <!-- <span class="name"> {{ doc.name }} :</span> -->
+            <span class="name"> {{ doc.name }} :</span>
             <span class="message">{{ doc.message }}</span>
         </div>
     </div>
@@ -15,6 +15,7 @@
 import getCollection from '@/composables/getCollection';
 import { formatISO9075 } from 'date-fns'
 import { computed, onUpdated, ref } from 'vue';
+Import getUser from '../composables/getUser';
 export default {
     setup(){
         const {error, documents} = getCollection('messages')
@@ -36,7 +37,7 @@ export default {
             
         })
 
-        return{error, documents, formattedDocuments, bottom}
+        return{error, documents, formattedDocuments, bottom, getUser}
     }
 }
 </script>
