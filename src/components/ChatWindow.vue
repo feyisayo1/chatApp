@@ -4,7 +4,7 @@
     <div v-if="documents" class="messages" ref="bottom">
         <div v-for="doc in formattedDocuments" :key="doc.id" class="single" :class="{ sender: doc.isSender }">
             <span class="created-at">{{ doc.createdAt }}</span>
-            <span class="name"> {{ doc.name }} :</span>
+            <span class="name"> {{ user.displayName }} :</span>
             <span class="message">{{ doc.message }}</span>
         </div>
     </div>
@@ -19,6 +19,7 @@ Import getUser from '../composables/getUser';
 export default {
     setup(){
         const {error, documents} = getCollection('messages')
+        const { user } = getUser();
 
         const  formattedDocuments = computed(() => {
             if(documents.value){
@@ -37,7 +38,7 @@ export default {
             
         })
 
-        return{error, documents, formattedDocuments, bottom, getUser}
+        return{error, documents, formattedDocuments, bottom, user}
     }
 }
 </script>
