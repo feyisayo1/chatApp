@@ -15,7 +15,7 @@
 import getCollection from '@/composables/getCollection';
 import { formatISO9075 } from 'date-fns'
 import { computed, onUpdated, ref } from 'vue';
-Import getUser from '../composables/getUser';
+import getUser from '../composables/getUser';
 export default {
     setup(){
         const {error, documents} = getCollection('messages')
